@@ -1,15 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.36105.23 d17.13
+VisualStudioVersion = 17.13.36105.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dafukMedia.Api", "dafukMedia.Api\dafukMedia.Api.csproj", "{95955500-64B4-474F-BBA4-25E02E575FC4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dafukMedia.Api", "src\dafukMedia.Api\dafukMedia.Api.csproj", "{95955500-64B4-474F-BBA4-25E02E575FC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dafukMedia.DTO", "dafukMedia.DTO\dafukMedia.DTO.csproj", "{5583B42E-38EE-4FF1-AE49-D8FCABBA1168}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dafukMedia.DTO", "src\dafukMedia.DTO\dafukMedia.DTO.csproj", "{5583B42E-38EE-4FF1-AE49-D8FCABBA1168}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dafukMedia.Model", "dafukMedia.Model\dafukMedia.Model.csproj", "{6FE85244-31DA-4789-AFF5-2A98783CB806}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dafukMedia.Model", "src\dafukMedia.Model\dafukMedia.Model.csproj", "{6FE85244-31DA-4789-AFF5-2A98783CB806}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dafukMedia.Service", "dafukMedia.Service\dafukMedia.Service.csproj", "{D281E198-44C9-41A9-9EB1-58D798536FFE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dafukMedia.Service", "src\dafukMedia.Service\dafukMedia.Service.csproj", "{D281E198-44C9-41A9-9EB1-58D798536FFE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{B7A4246E-D183-451A-B00D-D93FFFCF080D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solutionItems", "solutionItems", "{40B210F2-C910-418B-82C1-6731C222707E}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Packages.props = Directory.Packages.props
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +46,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{95955500-64B4-474F-BBA4-25E02E575FC4} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{5583B42E-38EE-4FF1-AE49-D8FCABBA1168} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{6FE85244-31DA-4789-AFF5-2A98783CB806} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{D281E198-44C9-41A9-9EB1-58D798536FFE} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {16900EB5-85E1-4718-8840-B73DFAE1B717}
