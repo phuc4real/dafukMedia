@@ -1,8 +1,14 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using dafukMedia.Api;
+using dafukMedia.Data.DBContext;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Register Entity Framework
+builder.Services.AddDbContext<dafukMediaContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Host.ConfigureContainer<ContainerBuilder>(b => b.RegisterModule(new AutofacModule()));
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());

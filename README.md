@@ -1,10 +1,10 @@
 ﻿# dafukMedia - Music Library Management System
 
-A .NET 8 Web API for organizing and managing music collections with automatic metadata extraction and duplicate detection.
+A .NET 8 Web API for organizing and managing music collections with automatic metadata extraction, metadata editing, and duplicate detection.
 
 ## 🎵 Overview
 
-dafukMedia is a comprehensive music library management system that automatically scans, organizes, and catalogs music files from local directories. It extracts metadata from audio files and organizes them by Artist, Album, and Genre with support for both lossy and lossless audio formats.
+dafukMedia is a comprehensive music library management system that automatically scans, organizes, and catalogs music files from local directories. It extracts metadata from audio files and organizes them by Artist, Album, and Genre with support for both lossy and lossless audio formats. The system also provides comprehensive metadata editing capabilities to correct and enhance your music library information.
 
 ## ✨ Features
 
@@ -16,6 +16,14 @@ dafukMedia is a comprehensive music library management system that automatically
 - **Format Support**: 
   - **Lossy**: MP3, AAC, OGG, WMA
   - **Lossless**: FLAC, ALAC, WAV
+
+### Metadata Editing & Management
+- **Single Track Editing**: Edit individual track metadata fields (title, artist, album, genre, year, etc.)
+- **Batch Editing**: Update metadata for multiple tracks simultaneously
+- **Metadata Validation**: Detect and highlight missing or invalid metadata fields
+- **File Tag Updates**: Save changes directly to audio file tags using TagLibSharp
+- **Revert Functionality**: Restore metadata from original audio files when needed
+- **Advanced Search**: Find tracks by various criteria including tracks with missing metadata
 
 ### Real-time Scanning
 - Background scan job processing with cancellation support
@@ -45,20 +53,20 @@ dafukMedia/
 ### Technology Stack
 - **.NET 8**: Latest LTS version with minimal APIs support
 - **Entity Framework Core**: Data access with SQL Server support
-- **TagLibSharp**: Audio metadata extraction library
+- **TagLibSharp**: Audio metadata extraction and editing library
 - **Autofac**: Dependency injection container
 - **Swagger/OpenAPI**: Auto-generated API documentation
 
 ### Project Structure
 
 #### dafukMedia.Api
-- **Controllers**: API endpoints for scan management and media providers
+- **Controllers**: API endpoints for scan management, metadata editing, tracks, and media providers
 - **Program.cs**: Application startup and configuration
 - **AutofacModule.cs**: Dependency injection configuration
 
 #### dafukMedia.Service
 - **Interfaces**: Service contracts and abstractions
-- **Implements**: Business logic implementations
+- **Implements**: Business logic implementations including metadata editing services
 - **Providers**: File system and media provider implementations
 - **Common**: Shared constants and utilities
 
@@ -67,7 +75,7 @@ dafukMedia/
 - **DBContext**: Database context configuration
 
 #### dafukMedia.DTO
-- **DTOs**: Data transfer objects for API communication
+- **DTOs**: Data transfer objects for API communication including metadata editing DTOs
 - **ApiResponse**: Standardized API response wrapper
 
 ## 🚀 Getting Started
@@ -184,6 +192,116 @@ GET /api/scan
 DELETE /api/scan/{id}
 ```
 
+### Metadata Editing
+
+#### Get Track Metadata
+```http
+GET /api/metadata/track/{id}
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "id": 1,
+    "title": "Song Title",
+    "artist": "Artist Name",
+    "album": "Album Title",
+    "genre": "Rock",
+    "year": 2024,
+    "trackNumber": 1,
+    "filePath": "C:\\Music\\Artist\\song.mp3",
+    "additionalMetadata": {}
+  }
+}
+```
+
+#### Edit Single Track Metadata
+```http
+PUT /api/metadata/track/{id}
+Content-Type: application/json
+
+{
+  "title": "Updated Title",
+  "artist": "Updated Artist",
+  "album": "Updated Album",
+  "genre": "Rock",
+  "year": 2024,
+  "trackNumber": 1
+}
+```
+
+#### Batch Edit Metadata
+```http
+PUT /api/metadata/batch
+Content-Type: application/json
+
+{
+  "trackIds": [1, 2, 3],
+  "metadata": {
+    "album": "Compilation Album",
+    "year": 2024
+  },
+  "overwriteExisting": false
+}
+```
+
+#### Validate Track Metadata
+```http
+GET /api/metadata/track/{id}/validate
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "trackId": 1,
+    "filePath": "C:\\Music\\song.mp3",
+    "missingFields": ["genre"],
+    "invalidFields": [],
+    "warnings": ["Year not specified"]
+  }
+}
+```
+
+#### Get Tracks with Metadata Issues
+```http
+GET /api/metadata/issues
+```
+
+#### Revert Track Metadata
+```http
+POST /api/metadata/track/{id}/revert
+```
+
+### Track Management
+
+#### Get All Tracks
+```http
+GET /api/tracks?page=1&pageSize=50&search=rock
+```
+
+#### Search Tracks
+```http
+POST /api/tracks/search
+Content-Type: application/json
+
+{
+  "hasMissingMetadata": true,
+  "genre": "Rock",
+  "maxResults": 100
+}
+```
+
+#### Get Artists/Albums/Genres
+```http
+GET /api/tracks/artists
+GET /api/tracks/albums
+GET /api/tracks/genres
+```
+
 ### Provider Management
 
 #### Get Available Providers
@@ -229,6 +347,7 @@ Services are configured using Autofac in `AutofacModule.cs`:
 
 - `IScannerService`: Handles scan job management
 - `IMetadataExtractionService`: Extracts metadata from audio files
+- `IMetadataEditService`: Handles metadata editing operations
 - `IMusicLibraryService`: Manages music library operations
 - `ILocalFileProvider`: Handles local file system operations
 
@@ -280,6 +399,10 @@ If you encounter any issues or have questions:
 
 ## 🚧 Roadmap
 
+- [x] Music library scanning and organization
+- [x] Metadata editing with TagLibSharp integration
+- [x] Batch metadata operations
+- [x] Metadata validation and issue detection
 - [ ] Web UI for library management
 - [ ] Advanced search and filtering
 - [ ] Playlist management

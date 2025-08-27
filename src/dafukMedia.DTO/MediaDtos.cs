@@ -20,6 +20,74 @@ public class TrackDto
     public DateTime UpdatedAt { get; set; }
 }
 
+public class TrackMetadataDto
+{
+    public int Id { get; set; }
+    public string Title { get; set; } = string.Empty;
+    public string? Artist { get; set; }
+    public string? Album { get; set; }
+    public string? Genre { get; set; }
+    public int? Year { get; set; }
+    public int? TrackNumber { get; set; }
+    public int? DiscNumber { get; set; }
+    public string? Comment { get; set; }
+    public string? Composer { get; set; }
+    public string? AlbumArtist { get; set; }
+    public string FilePath { get; set; } = string.Empty;
+    public Dictionary<string, string> AdditionalMetadata { get; set; } = new();
+}
+
+public class EditTrackMetadataDto
+{
+    public string Title { get; set; } = string.Empty;
+    public string? Artist { get; set; }
+    public string? Album { get; set; }
+    public string? Genre { get; set; }
+    public int? Year { get; set; }
+    public int? TrackNumber { get; set; }
+    public int? DiscNumber { get; set; }
+    public string? Comment { get; set; }
+    public string? Composer { get; set; }
+    public string? AlbumArtist { get; set; }
+    public Dictionary<string, string> AdditionalMetadata { get; set; } = new();
+}
+
+public class BatchEditMetadataDto
+{
+    public List<int> TrackIds { get; set; } = new();
+    public EditTrackMetadataDto Metadata { get; set; } = new();
+    public bool OverwriteExisting { get; set; } = false;
+}
+
+public class MetadataValidationResultDto
+{
+    public int TrackId { get; set; }
+    public string FilePath { get; set; } = string.Empty;
+    public List<string> MissingFields { get; set; } = new();
+    public List<string> InvalidFields { get; set; } = new();
+    public List<string> Warnings { get; set; } = new();
+}
+
+public class MetadataEditResultDto
+{
+    public int TrackId { get; set; }
+    public string FilePath { get; set; } = string.Empty;
+    public bool Success { get; set; }
+    public string? ErrorMessage { get; set; }
+    public List<string> UpdatedFields { get; set; } = new();
+}
+
+public class TrackSearchDto
+{
+    public string? Title { get; set; }
+    public string? Artist { get; set; }
+    public string? Album { get; set; }
+    public string? Genre { get; set; }
+    public int? Year { get; set; }
+    public bool? HasMissingMetadata { get; set; }
+    public int? MaxResults { get; set; } = 100;
+}
+
 public class ArtistDto
 {
     public int Id { get; set; }
