@@ -17,6 +17,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\dafukMedia.Service\dafukMedia.Service.csproj" />
+    <ProjectReference Include="..\dafukMedia.DTO\dafukMedia.DTO.csproj" />
+    <ProjectReference Include="..\dafukMedia.Model\dafukMedia.Data.csproj" />
   </ItemGroup>
 
 </Project>

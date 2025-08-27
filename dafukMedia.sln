@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dafukMedia.Api", "src\dafuk
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dafukMedia.DTO", "src\dafukMedia.DTO\dafukMedia.DTO.csproj", "{5583B42E-38EE-4FF1-AE49-D8FCABBA1168}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dafukMedia.Model", "src\dafukMedia.Model\dafukMedia.Model.csproj", "{6FE85244-31DA-4789-AFF5-2A98783CB806}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dafukMedia.Data", "src\dafukMedia.Model\dafukMedia.Data.csproj", "{6FE85244-31DA-4789-AFF5-2A98783CB806}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dafukMedia.Service", "src\dafukMedia.Service\dafukMedia.Service.csproj", "{D281E198-44C9-41A9-9EB1-58D798536FFE}"
 EndProject
